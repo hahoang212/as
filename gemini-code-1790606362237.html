@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QUẢN LÝ TĂNG GIA SẢN XUẤT LỮ ĐOÀN 574</title>
+
+<!-- CẤU HÌNH WEB APP PWA (DÙNG ĐỂ ĐÓNG GÓI THÀNH APP METADATA) -->
+<meta name="theme-color" content="#1f6b45">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Tăng Gia 574">
+
+<!-- MANIFEST INLINE (CẤU HÌNH TÊN VÀ MÃ ỨNG DỤNG) -->
+<link rel="manifest" id="manifestPlaceholder">
+
+<style>
+:root{--green:#1f6b45;--green2:#2f8f5b;--light:#eef7f1;--dark:#173b2a;--red:#b43a32;--orange:#b87512;--border:#d8e4dc;--bg:#f5f7f6}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:#213027}
+header{background:linear-gradient(135deg,#164b31,#2f8f5b);color:#fff;padding:16px 28px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+header h1{margin:0;font-size:20px;text-transform:uppercase;letter-spacing:0.5px}header p{margin:4px 0 0;opacity:.88;font-size:13px}
+.userbox{background:#ffffff18;border:1px solid #ffffff38;padding:8px 14px;border-radius:10px;text-align:right;display:flex;align-items:center;gap:12px}
+.layout{display:flex;min-height:calc(100vh - 81px)}
+aside{width:260px;background:#173b2a;color:white;padding:18px 12px}
+nav button{display:block;width:100%;text-align:left;background:transparent;border:0;color:#dcece2;padding:13px 14px;border-radius:8px;margin:4px 0;cursor:pointer;font-size:14px}
+nav button:hover,nav button.active{background:#2f8f5b;color:white}
+main{flex:1;padding:24px;max-width:1500px;margin:auto;width:100%}
+.page{display:none}.page.active{display:block}
+h2{margin:0 0 6px;color:var(--dark)}.sub{color:#66756c;margin:0 0 20px}
+.panel{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:18px;box-shadow:0 2px 8px #193d2a0b}
+.panel h3{margin:0 0 14px;color:var(--dark)}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{padding:11px 9px;border-bottom:1px solid #e4ebe6;text-align:left}th{background:#f0f6f2;color:#345343}tr:hover td{background:#fbfdfb}
+.badge{display:inline-block;padding:5px 9px;border-radius:99px;font-size:12px;font-weight:700}.ok{background:#dff3e6;color:#17613a}.warn{background:#fff0d5;color:#875508}.danger{background:#fde2df;color:#9e3028}
+label{display:block;font-size:13px;font-weight:700;margin-bottom:6px;color:#42564a}input,select,textarea{width:100%;padding:10px 11px;border:1px solid #cbd9d0;border-radius:7px;background:white;font-size:14px}
+input:disabled,select:disabled{background:#f0f0f0;color:#555;cursor:not-allowed}
+textarea{min-height:80px;resize:vertical}.formgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}.formgrid .full{grid-column:1/-1}
+button.primary,.btn{border:0;border-radius:7px;background:var(--green);color:white;padding:10px 15px;cursor:pointer;font-weight:700}.btn.secondary{background:#e8f0eb;color:#225339}.btn.red{background:var(--red)}.btn.logout{background:#b43a32;padding:6px 12px;font-size:12px}
+.right{text-align:right}
+.login-container{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#164b31,#2f8f5b)}
+.login{width:100%;max-width:420px;background:#fff;border-radius:15px;padding:30px;box-shadow:0 10px 30px #00000033}
+.login h2{text-align:center;margin-top:10px;font-size:18px}.login .logo{width:60px;height:60px;margin:auto;background:#1f6b45;border-radius:15px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;font-weight:bold}
+.login .field{margin-bottom:15px}
+.login button{width:100%;margin-top:10px;padding:12px}
+.login-err{color:var(--red);font-size:13px;text-align:center;margin-top:10px;display:none}
+.small{font-size:12px;color:#718078}
+.readonly-tag{background:#e3f2fd;color:#0d47a1;padding:3px 8px;border-radius:4px;font-size:12px;font-weight:bold;margin-left:8px}
+.pwa-banner{background:#fff3cd;color:#856404;padding:10px 15px;border-radius:8px;margin-bottom:15px;display:none;align-items:center;justify-content:space-between;border:1px solid #ffeeba}
+@media(max-width:900px){aside{width:210px}.formgrid{grid-template-columns:1fr}}
+@media(max-width:650px){.layout{display:block}aside{width:100%}main{padding:14px}header{padding:15px;display:block}.userbox{text-align:left;margin-top:10px}}
+</style>
+</head>
+<body>
+
+<!-- MÀN HÌNH ĐĂNG NHẬP -->
+<div id="loginScreen" class="login-container">
+  <div class="login">
+    <div class="logo">574</div>
+    <h2>CƠ SỞ DỮ LIỆU TĂNG GIA SẢN XUẤT</h2>
+    <p class="sub" style="text-align:center;font-size:12px;font-weight:bold;color:#1f6b45;margin-bottom:15px;">LỮ ĐOÀN 574</p>
+    
+    <!-- THANH NÚT TẢI/CÀI ĐẶT APP THÔNG MINH -->
+    <div id="pwaInstallBanner" class="pwa-banner">
+      <span style="font-size:12px;">📱 Bạn có thể cài đặt làm App độc lập</span>
+      <button class="btn" style="padding:4px 8px;font-size:12px;" onclick="installApp()">Cài Đặt</button>
+    </div>
+
+    <!-- FORM ĐĂNG NHẬP - TẮT AUTOCOMPLETE -->
+    <form id="loginForm" autocomplete="off" onsubmit="event.preventDefault(); login();">
+      <!-- Dummy inputs ngụy trang chống trình duyệt ghi nhớ tài khoản -->
+      <input type="text" style="display:none" name="fakeusernameremembered"/>
+      <input type="password" style="display:none" name="fakepasswordremembered"/>
+
+      <div class="field">
+        <label for="loginUser">Tên tài khoản</label>
+        <input type="text" id="loginUser" name="username_sec" autocomplete="off" spellcheck="false" placeholder="Nhập tên tài khoản">
+      </div>
+      <div class="field">
+        <label for="loginPass">Mật khẩu</label>
+        <input type="password" id="loginPass" name="password_sec" autocomplete="new-password" placeholder="Nhập mật khẩu">
+      </div>
+      
+      <button type="submit" class="primary" id="btnLogin">Đăng Nhập System</button>
+      <div id="loginErr" class="login-err">Tài khoản hoặc mật khẩu không chính xác!</div>
+    </form>
+  </div>
+</div>
+
+<!-- GIAO DIỆN CHÍNH -->
+<div id="app" style="display:none">
+<header>
+  <div>
+    <h1>QUẢN LÝ TĂNG GIA SẢN XUẤT LỮ ĐOÀN 574</h1>
+    <p>Hệ thống điều phối hậu cần, theo dõi rau xanh & chăn nuôi lợn tập trung</p>
+  </div>
+  <div class="userbox">
+    <div>
+      <b id="currentRole"></b><br>
+      <span class="small" style="color:#dcece2" id="currentUser"></span>
+    </div>
+    <button class="btn logout" onclick="logout()">Đăng xuất</button>
+  </div>
+</header>
+
+<div class="layout">
+<aside>
+<nav id="nav">
+<button data-page="muc1" onclick="showPage('muc1')">👔 Mục 1: Cán bộ & Quản bếp</button>
+<button data-page="muc2" onclick="showPage('muc2')">📊 Mục 2: Số liệu Rau & Lợn</button>
+<button data-page="muc3" onclick="showPage('muc3')">🔄 Mục 3: Nhập rau giữa ĐV</button>
+<button data-page="muc4" onclick="showPage('muc4')">🛒 Mục 4: Đề nghị mua ngoài</button>
+<button data-page="muc5" onclick="showPage('muc5')">🐖 Mục 5: Đàn lợn & Điều chuyển</button>
+<button data-page="muc6" onclick="showPage('muc6')">📈 Mục 6: So sánh & Thống kê 🔒</button>
+</nav>
+</aside>
+
+<main>
+<!-- MỤC 1 -->
+<section id="muc1" class="page active">
+<h2>Mục 1: Tên các Trợ lý Hậu cần và Quản lý bếp của các Tiểu đoàn</h2>
+<p class="sub">Quản lý nhân sự phụ trách công tác hậu cần và bếp ăn tại Lữ đoàn 574.</p>
+
+<div class="panel">
+<h3>Cập nhật / Chỉnh sửa thông tin cán bộ</h3>
+<div class="formgrid">
+  <div><label>Tiểu đoàn</label><select id="m1_unit"><option value="1">Tiểu đoàn 1</option><option value="2">Tiểu đoàn 2</option><option value="3">Tiểu đoàn 3</option></select></div>
+  <div><label>Họ tên Trợ lý Hậu cần</label><input id="m1_assistant" autocomplete="off" placeholder="VD: Cấp bậc, Họ tên"></div>
+  <div><label>Số điện thoại TLHC</label><input id="m1_phoneAssistant" autocomplete="off" placeholder="VD: 098x.xxx.xxx"></div>
+  <div><label>Họ tên Quản lý bếp (Bếp trưởng)</label><input id="m1_chef" autocomplete="off" placeholder="VD: Cấp bậc, Họ tên"></div>
+  <div class="full"><label>Số điện thoại Quản lý bếp</label><input id="m1_phoneChef" autocomplete="off" placeholder="VD: 097x.xxx.xxx"></div>
+</div>
+<div class="right" style="margin-top:14px"><button class="primary" onclick="saveMuc1()">Lưu thông tin nhân sự</button></div>
+</div>
+
+<div class="panel">
+<h3>Danh sách Trợ lý Hậu cần & Quản lý bếp</h3>
+<table>
+  <thead>
+    <tr><th>Đơn vị</th><th>Trợ lý Hậu cần</th><th>SĐT TLHC</th><th>Quản lý bếp</th><th>SĐT Quản lý bếp</th></tr>
+  </thead>
+  <tbody id="m1_table"></tbody>
+</table>
+</div>
+</section>
+
+<!-- MỤC 2 -->
+<section id="muc2" class="page">
+<h2>Mục 2: Bảng số liệu rau xanh từng loại và số đầu lợn của từng Tiểu đoàn</h2>
+<p class="sub">Các đơn vị thuộc Lữ đoàn 574 tự chủ động nhập và cập nhật số liệu thực tế.</p>
+
+<div class="panel" id="p_m2_rau_input">
+<h3>1. Nhập số liệu Rau xanh chi tiết từng loại</h3>
+<div class="formgrid">
+  <div><label>Tiểu đoàn</label><select id="m2_unit_rau"><option value="1">Tiểu đoàn 1</option><option value="2">Tiểu đoàn 2</option><option value="3">Tiểu đoàn 3</option></select></div>
+  <div><label>Tên loại rau</label><input id="m2_rau_name" autocomplete="off" placeholder="VD: Rau muống, Cải ngọt..."></div>
+  <div><label>Sản lượng hiện có (kg)</label><input id="m2_rau_qty" type="number" min="0" placeholder="0"></div>
+  <div><label>Ghi chú / Tình trạng</label><input id="m2_rau_note" autocomplete="off" placeholder="VD: Thu hoạch tốt, mới gieo..."></div>
+</div>
+<div class="right" style="margin-top:14px"><button class="primary" onclick="saveMuc2Rau()">Thêm loại rau</button></div>
+</div>
+
+<div class="panel">
+<h3>Chi tiết rau xanh theo từng Tiểu đoàn</h3>
+<table>
+  <thead><tr><th>Đơn vị</th><th>Tên loại rau</th><th>Số lượng (kg)</th><th>Ghi chú</th><th>Thao tác</th></tr></thead>
+  <tbody id="m2_rau_table"></tbody>
+</table>
+</div>
+
+<div class="panel">
+<h3>2. Cập nhật tổng số đầu lợn</h3>
+<div class="formgrid" id="p_m2_lon_input">
+  <div><label>Tiểu đoàn</label><select id="m2_unit_lon"><option value="1">Tiểu đoàn 1</option><option value="2">Tiểu đoàn 2</option><option value="3">Tiểu đoàn 3</option></select></div>
+  <div><label>Tổng số đầu lợn (con)</label><input id="m2_lon_qty" type="number" min="0" placeholder="0"></div>
+</div>
+<div class="right" style="margin-top:14px" id="b_m2_lon_save"><button class="primary" onclick="saveMuc2Lon()">Cập nhật số đầu lợn</button></div>
+
+<h4 style="margin-top:20px;">Tổng hợp số lượng rau xanh & Tổng đầu lợn các Tiểu đoàn</h4>
+<table>
+  <thead><tr><th>Đơn vị</th><th>Tổng sản lượng rau xanh (kg)</th><th>Tổng số đầu lợn (con)</th></tr></thead>
+  <tbody id="m2_summary_table"></tbody>
+</table>
+</div>
+</section>
+
+<!-- MỤC 3 -->
+<section id="muc3" class="page">
+<h2>Mục 3: Đề nghị nhập rau giữa các đơn vị</h2>
+<p class="sub">Đơn vị có nhu cầu nhập rau điền thông tin chi tiết bên dưới gửi Ban Hậu cần Lữ đoàn duyệt.</p>
+
+<div class="panel" id="p_m3_input">
+<h3>Tạo đề nghị nhập / điều phối rau</h3>
+<div class="formgrid">
+  <div><label>Đơn vị nhập (đơn vị của bạn)</label><select id="m3_toUnit"><option value="1">Tiểu đoàn 1</option><option value="2">Tiểu đoàn 2</option><option value="3">Tiểu đoàn 3</option></select></div>
+  <div><label>Đơn vị cung cấp (xuất rau)</label><select id="m3_fromUnit"><option value="1">Tiểu đoàn 1</option><option value="2">Tiểu đoàn 2</option><option value="3">Tiểu đoàn 3</option></select></div>
+  <div><label>Loại rau</label><input id="m3_rauType" autocomplete="off" placeholder="VD: Rau muống, Bắp cải..."></div>
+  <div><label>Số lượng (kg)</label><input id="m3_qty" type="number" min="0" step="0.1"></div>
+  <div><label>Đơn giá từng loại rau (VNĐ/kg)</label><input id="m3_price" type="number" min="0" placeholder="VD: 10000"></div>
+  <div><label>Thời gian cần nhập</label><input id="m3_date" type="date"></div>
+  <div class="full"><label>Tên người nhập đề nghị</label><input id="m3_person" autocomplete="off" placeholder="Họ tên cán bộ lập đề nghị"></div>
+</div>
+<div class="right" style="margin-top:14px"><button class="primary" onclick="saveMuc3()">Gửi đề nghị nhập rau</button></div>
+</div>
+
+<div class="panel">
+<h3>Danh sách đề nghị nhập rau giữa các đơn vị</h3>
+<table>
+  <thead>
+    <tr><th>Mã</th><th>Thời gian</th><th>Đơn vị nhập</th><th>Đơn vị xuất</th><th>Loại rau</th><th>Số lượng (kg)</th><th>Giá (VNĐ/kg)</th><th>Thành tiền</th><th>Người đề nghị</th><th>Trạng thái</th><th>Thao tác (Chỉ Admin)</th></tr>
+  </thead>
+  <tbody id="m3_table"></tbody>
+</table>
+</div>
+</section>
+
+<!-- MỤC 4 -->
+<section id="muc4" class="page">
+<h2>Mục 4: Đề nghị mua rau ngoài</h2>
+<p class="sub">Trường hợp rau nội bộ không đủ đáp ứng, lập đề nghị mua ngoài gửi Cấp trên Lữ đoàn duyệt.</p>
+
+<div class="panel" id="p_m4_input">
+<h3>Tạo đề nghị mua rau ngoài</h3>
+<div class="formgrid">
+  <div><label>Đơn vị đề nghị</label><select id="m4_unit"><option value="1">Tiểu đoàn 1</option><option value="2">Tiểu đoàn 2</option><option value="3">Tiểu đoàn 3</option></select></div>
+  <div><label>Tên loại rau cần mua</label><input id="m4_rauType" autocomplete="off" placeholder="VD: Cà chua, Khoai tây..."></div>
+  <div><label>Số lượng cần mua (kg)</label><input id="m4_qty" type="number" min="0" step="0.1"></div>
+  <div><label>Giá dự kiến (VNĐ/kg)</label><input id="m4_price" type="number" min="0"></div>
+  <div><label>Thời gian cần</label><input id="m4_date" type="date"></div>
+  <div><label>Tên người đề nghị</label><input id="m4_person" autocomplete="off" placeholder="Họ tên cán bộ đề nghị"></div>
+  <div class="full"><label>Lý do đề nghị mua ngoài</label><textarea id="m4_reason" autocomplete="off" placeholder="VD: Rau tại vườn chưa đến lứa thu hoạch..."></textarea></div>
+</div>
+<div class="right" style="margin-top:14px"><button class="primary" onclick="saveMuc4()">Gửi đề nghị mua ngoài</button></div>
+</div>
+
+<div class="panel">
+<h3>Bảng danh sách đề nghị mua rau ngoài</h3>
+<table>
+  <thead>
+    <tr><th>Mã</th><th>Thời gian</th><th>Đơn vị</th><th>Loại rau mua ngoài</th><th>Khối lượng</th><th>Giá dự kiến</th><th>Thành tiền</th><th>Người đề nghị</th><th>Lý do</th><th>Trạng thái</th><th>Thao tác (Chỉ Admin)</th></tr>
+  </thead>
+  <tbody id="m4_table"></tbody>
+</table>
+</div>
+</section>
+
+<!-- MỤC 5 -->
+<section id="muc5" class="page">
+<h2>Mục 5: Bảng số liệu đầu lợn & Đề nghị Bán / Bắt lợn</h2>
+<p class="sub">Thống kê chi tiết đàn lợn và quản lý điều chuyển lợn tại Lữ đoàn 574.</p>
+
+<div class="panel" id="p_m5_pig_input">
+<h3>5.1. Quản lý chi tiết đàn lợn từng Tiểu đoàn</h3>
+<div class="formgrid">
+  <div><label>Đơn vị</label><select id="m5_unit"><option value="1">Tiểu đoàn 1</option><option value="2">Tiểu đoàn 2</option><option value="3">Tiểu đoàn 3</option></select></div>
+  <div><label>Loại lợn / Nhóm lợn</label><input id="m5_pigType" autocomplete="off" placeholder="VD: Lợn thịt, Lợn nái..."></div>
+  <div><label>Số lượng (con)</label><input id="m5_qty" type="number" min="0"></div>
+  <div><label>Cân nặng từ - đến (kg/con)</label><input id="m5_weightRange" autocomplete="off" placeholder="VD: 70kg - 90kg"></div>
+  <div class="full"><label>Người phụ trách chăn nuôi</label><input id="m5_keeper" autocomplete="off" placeholder="Họ tên người phụ trách"></div>
+</div>
+<div class="right" style="margin-top:14px"><button class="primary" onclick="saveMuc5Pig()">Thêm đàn lợn</button></div>
+</div>
+
+<div class="panel">
+<h3>Danh sách đàn lợn chi tiết</h3>
+<table>
+  <thead>
+    <tr><th>Đơn vị</th><th>Loại lợn</th><th>Số lượng (con)</th><th>Cân nặng (từ - đến)</th><th>Người phụ trách chăn nuôi</th><th>Thao tác</th></tr>
+  </thead>
+  <tbody id="m5_pig_table"></tbody>
+</table>
+</div>
+
+<div class="panel" id="p_m5_sell_input">
+<h3>5.2. Đề nghị BÁN LỢN (Cấp dưới lập đề nghị)</h3>
+<div class="formgrid">
+  <div><label>Đơn vị đề nghị bán</label><select id="m5_sell_unit"><option value="1">Tiểu đoàn 1</option><option value="2">Tiểu đoàn 2</option><option value="3">Tiểu đoàn 3</option></select></div>
+  <div><label>Số lượng đề nghị bán (con)</label><input id="m5_sell_qty" type="number" min="0"></div>
+  <div><label>Cân nặng trung bình (kg/con)</label><input id="m5_sell_weight" autocomplete="off" placeholder="VD: 95 kg"></div>
+  <div><label>Lý do đề nghị bán</label><input id="m5_sell_reason" autocomplete="off" placeholder="VD: Xuất bán xuất chuồng, quá cân..."></div>
+  <div class="full"><label>Người lập đề nghị</label><input id="m5_sell_person" autocomplete="off" placeholder="Họ tên"></div>
+</div>
+<div class="right" style="margin-top:14px"><button class="primary" onclick="saveMuc5Sell()">Gửi đề nghị bán lợn</button></div>
+</div>
+
+<div class="panel">
+<h3>Bảng danh sách đề nghị BÁN LỢN</h3>
+<table>
+  <thead>
+    <tr><th>Mã</th><th>Đơn vị</th><th>Số lượng (con)</th><th>Cân nặng TB</th><th>Lý do</th><th>Người đề nghị</th><th>Trạng thái</th><th>Thao tác (Chỉ Admin)</th></tr>
+  </thead>
+  <tbody id="m5_sell_table"></tbody>
+</table>
+</div>
+
+<div class="panel" id="p_m5_catch_input">
+<h3>5.3. Ban hành LỆNH BẮT LỢN (Chỉ Admin / Chủ nhiệm HC-KT)</h3>
+<div class="formgrid">
+  <div><label>Đơn vị bị/được bắt lợn</label><select id="m5_catch_unit"><option value="1">Tiểu đoàn 1</option><option value="2">Tiểu đoàn 2</option><option value="3">Tiểu đoàn 3</option></select></div>
+  <div><label>Số lượng bắt (con)</label><input id="m5_catch_qty" type="number" min="0"></div>
+  <div><label>Mục đích bắt lợn</label><input id="m5_catch_purpose" autocomplete="off" placeholder="VD: Bắt thịt phục vụ bếp ăn..."></div>
+  <div><label>Thời gian thực hiện</label><input id="m5_catch_date" type="date"></div>
+  <div class="full"><label>Cán bộ chỉ đạo / ra lệnh</label><input id="m5_catch_boss" autocomplete="off" value="Chủ nhiệm Hậu cần - Kỹ thuật Lữ đoàn 574"></div>
+</div>
+<div class="right" style="margin-top:14px"><button class="primary" onclick="saveMuc5Catch()">Ban hành Lệnh bắt lợn</button></div>
+</div>
+
+<div class="panel">
+<h3>Bảng danh sách LỆNH BẮT LỢN</h3>
+<table>
+  <thead>
+    <tr><th>Mã</th><th>Ngày chỉ đạo</th><th>Đơn vị thực hiện</th><th>Số lượng (con)</th><th>Mục đích</th><th>Cấp trên chỉ đạo</th><th>Trạng thái</th><th>Thao tác (Tiểu đoàn)</th></tr>
+  </thead>
+  <tbody id="m5_catch_table"></tbody>
+</table>
+</div>
+</section>
+
+<!-- MỤC 6: CHỈ XEM -->
+<section id="muc6" class="page">
+<h2>Mục 6: Bảng so sánh kết quả tăng gia & Thống kê xuất nhập <span class="readonly-tag">CHỈ XEM</span></h2>
+<p class="sub">Tự động tổng hợp dữ liệu từ các Mục để so sánh phong trào tăng gia Lữ đoàn 574.</p>
+
+<div class="panel">
+<h3>1. So sánh kết quả Tăng gia sản xuất giữa các đơn vị</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Đơn vị</th>
+      <th>Tổng sản lượng Rau xanh (kg)</th>
+      <th>Đánh giá phong trào Rau</th>
+      <th>Tổng số lượng Lợn (con)</th>
+      <th>Đánh giá phong trào Chăn nuôi</th>
+    </tr>
+  </thead>
+  <tbody id="m6_compare_table"></tbody>
+</table>
+</div>
+
+<div class="panel">
+<h3>2. Thống kê Chi tiết Xuất - Nhập Rau Xanh (Đã duyệt)</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Đơn vị</th>
+      <th>Rau tự sản xuất hiện có</th>
+      <th>Rau điều phối NHẬP từ ĐV khác</th>
+      <th>Rau điều phối XUẤT cho ĐV khác</th>
+      <th>Rau mua bên ngoài</th>
+      <th>Tổng rau khả dụng thực tế</th>
+    </tr>
+  </thead>
+  <tbody id="m6_rau_stat_table"></tbody>
+</table>
+</div>
+
+<div class="panel">
+<h3>3. Thống kê biến động Đàn lợn (Đã duyệt / Đã hoàn thành)</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Đơn vị</th>
+      <th>Tổng đàn lợn hiện tại</th>
+      <th>Số lợn đã đề nghị BÁN</th>
+      <th>Số lợn đã BẮT theo lệnh Cấp trên</th>
+      <th>Tổng lợn đã điều chuyển / xuất chuồng</th>
+    </tr>
+  </thead>
+  <tbody id="m6_lon_stat_table"></tbody>
+</table>
+</div>
+</section>
+
+</main></div></div>
+
+<script>
+// TỰ ĐỘNG KHỞI TẠO MANIFEST CHO PWA ĐÓNG GÓI APP
+const manifestData = {
+  "name": "QUẢN LÝ TĂNG GIA SẢN XUẤT LỮ ĐOÀN 574",
+  "short_name": "Tăng Gia 574",
+  "id": "quan_ly_tang_gia_san_xuat_lu_doan_574",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f5f7f6",
+  "theme_color": "#1f6b45",
+  "description": "Hệ thống quản lý và điều phối tăng gia sản xuất Lữ đoàn 574",
+  "icons": [{
+    "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231f6b45'/><text x='50' y='65' font-size='45' font-weight='bold' fill='white' text-anchor='middle'>574</text></svg>",
+    "sizes": "192x192 512x512",
+    "type": "image/svg+xml"
+  }]
+};
+const manifestBlob = new Blob([JSON.stringify(manifestData)], {type: 'application/json'});
+document.getElementById('manifestPlaceholder').setAttribute('href', URL.createObjectURL(manifestBlob));
+
+// TẮT GỢI Ý ĐĂNG NHẬP VÀ MÃ HÓA PASSWORD (SHA-256)
+const HASH_123456 = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92";
+
+const USERS = {
+  'admin': { passHash: HASH_123456, role: 'admin', unit: 0, name: 'Chủ nhiệm Hậu cần - Kỹ thuật Lữ đoàn 574' },
+  'd1': { passHash: HASH_123456, role: 'unit', unit: 1, name: 'Trợ lý HC - Tiểu đoàn 1' },
+  'd2': { passHash: HASH_123456, role: 'unit', unit: 2, name: 'Trợ lý HC - Tiểu đoàn 2' },
+  'd3': { passHash: HASH_123456, role: 'unit', unit: 3, name: 'Trợ lý HC - Tiểu đoàn 3' }
+};
+
+const KEY = 'quan_ly_tang_gia_san_xuat_lu_doan_574_data';
+const names = {1: 'Tiểu đoàn 1', 2: 'Tiểu đoàn 2', 3: 'Tiểu đoàn 3'};
+
+let currentUserData = null;
+let loginAttempts = 0;
+let lockUntil = 0;
+
+async function sha256(message) {
+  const msgBuffer = new TextEncoder().encode(message);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+let state = JSON.parse(localStorage.getItem(KEY) || 'null') || {
+  m1: {
+    1: {assistant: 'Đại úy Nguyễn Văn A', phoneAssistant: '0981111111', chef: 'Thượng sĩ Trần Văn B', phoneChef: '0971111111'},
+    2: {assistant: 'Thượng úy Lê Văn C', phoneAssistant: '0982222222', chef: 'Trung sĩ Hoàng Văn D', phoneChef: '0972222222'},
+    3: {assistant: 'Đại úy Phạm Văn E', phoneAssistant: '0983333333', chef: 'Thượng sĩ Vũ Văn F', phoneChef: '0973333333'}
+  },
+  m2_rau: [
+    {id: 1, unit: 1, name: 'Rau muống', qty: 150, note: 'Thu hoạch tốt'},
+    {id: 2, unit: 2, name: 'Bắp cải', qty: 200, note: 'Đáp ứng đủ'},
+    {id: 3, unit: 3, name: 'Su su', qty: 90, note: 'Tăng trưởng tốt'}
+  ],
+  m2_lon: { 1: 45, 2: 30, 3: 60 },
+  m3: [],
+  m4: [],
+  m5_pigs: [
+    {id: 1, unit: 1, type: 'Lợn thịt', qty: 30, weightRange: '80kg - 100kg', keeper: 'Nguyễn Văn X'},
+    {id: 2, unit: 2, type: 'Lợn thịt', qty: 30, weightRange: '70kg - 90kg', keeper: 'Lê Văn Y'}
+  ],
+  m5_sells: [],
+  m5_catches: [],
+  seq: 1
+};
+
+function persist() {
+  localStorage.setItem(KEY, JSON.stringify(state));
+  renderAll();
+}
+
+async function login() {
+  const now = Date.now();
+  const err = document.getElementById('loginErr');
+  
+  if (now < lockUntil) {
+    const sec = Math.ceil((lockUntil - now) / 1000);
+    err.textContent = `Thử lại sau ${sec} giây (Khóa do nhập sai nhiều lần).`;
+    err.style.display = 'block';
+    return;
+  }
+
+  const u = document.getElementById('loginUser').value.trim().toLowerCase();
+  const p = document.getElementById('loginPass').value.trim();
+
+  if(!u || !p) {
+    err.textContent = 'Vui lòng nhập tên tài khoản và mật khẩu!';
+    err.style.display = 'block';
+    return;
+  }
+
+  const pHash = await sha256(p);
+
+  if(USERS[u] && USERS[u].passHash === pHash) {
+    loginAttempts = 0;
+    err.style.display = 'none';
+    currentUserData = { username: u, ...USERS[u] };
+    
+    document.getElementById('loginUser').value = '';
+    document.getElementById('loginPass').value = '';
+
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    document.getElementById('currentRole').textContent = currentUserData.name;
+    document.getElementById('currentUser').textContent = 'Tài khoản: ' + currentUserData.username;
+
+    applyPermissions();
+    showPage('muc1');
+  } else {
+    loginAttempts++;
+    if (loginAttempts >= 5) {
+      lockUntil = Date.now() + 30000;
+      err.textContent = 'Đã thử sai quá 5 lần. Đăng nhập bị tạm khóa 30 giây!';
+    } else {
+      err.textContent = `Tài khoản hoặc mật khẩu không chính xác! (Còn ${5 - loginAttempts} lần thử)`;
+    }
+    err.style.display = 'block';
+  }
+}
+
+function logout() {
+  currentUserData = null;
+  document.getElementById('loginUser').value = '';
+  document.getElementById('loginPass').value = '';
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('app').style.display = 'none';
+}
+
+function applyPermissions() {
+  const isUnit = currentUserData.role === 'unit';
+  const myUnit = currentUserData.unit;
+
+  const selectIds = ['m1_unit', 'm2_unit_rau', 'm2_unit_lon', 'm3_toUnit', 'm4_unit', 'm5_unit', 'm5_sell_unit'];
+  selectIds.forEach(id => {
+    const el = document.getElementById(id);
+    if(el) {
+      if(isUnit) {
+        el.value = myUnit;
+        el.disabled = true;
+      } else {
+        el.disabled = false;
+      }
+    }
+  });
+
+  document.getElementById('p_m5_catch_input').style.display = (currentUserData.role === 'admin') ? 'block' : 'none';
+  document.getElementById('p_m2_rau_input').style.display = isUnit ? 'block' : 'none';
+  document.getElementById('p_m2_lon_input').style.display = isUnit ? 'grid' : 'none';
+  document.getElementById('b_m2_lon_save').style.display = isUnit ? 'block' : 'none';
+  document.getElementById('p_m3_input').style.display = isUnit ? 'block' : 'none';
+  document.getElementById('p_m4_input').style.display = isUnit ? 'block' : 'none';
+  document.getElementById('p_m5_pig_input').style.display = isUnit ? 'block' : 'none';
+  document.getElementById('p_m5_sell_input').style.display = isUnit ? 'block' : 'none';
+}
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(x => x.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('nav button').forEach(x => x.classList.toggle('active', x.dataset.page === id));
+  renderAll();
+}
+
+// MỤC 1
+function saveMuc1() {
+  let u = document.getElementById('m1_unit').value;
+  if(currentUserData.role !== 'admin' && currentUserData.unit != u) { 
+    alert('Bạn chỉ có quyền cập nhật thông tin của đơn vị mình!'); 
+    return; 
+  }
+  state.m1[u] = {
+    assistant: document.getElementById('m1_assistant').value,
+    phoneAssistant: document.getElementById('m1_phoneAssistant').value,
+    chef: document.getElementById('m1_chef').value,
+    phoneChef: document.getElementById('m1_phoneChef').value
+  };
+  persist();
+  alert('Đã cập nhật thông tin cán bộ!');
+}
+
+// MỤC 2
+function saveMuc2Rau() {
+  let u = currentUserData.unit;
+  let name = document.getElementById('m2_rau_name').value.trim();
+  let qty = Number(document.getElementById('m2_rau_qty').value || 0);
+  let note = document.getElementById('m2_rau_note').value.trim();
+  if(!name) { alert('Vui lòng nhập tên loại rau'); return; }
+  state.m2_rau.push({ id: Date.now(), unit: u, name: name, qty: qty, note: note });
+  persist();
+  document.getElementById('m2_rau_name').value = '';
+  document.getElementById('m2_rau_qty').value = '';
+}
+function deleteMuc2Rau(id) {
+  let r = state.m2_rau.find(x => x.id === id);
+  if(currentUserData.role === 'unit' && r.unit != currentUserData.unit) {
+    alert('Bạn không thể xóa số liệu của đơn vị khác!');
+    return;
+  }
+  state.m2_rau = state.m2_rau.filter(x => x.id !== id);
+  persist();
+}
+function saveMuc2Lon() {
+  let u = currentUserData.unit;
+  let qty = Number(document.getElementById('m2_lon_qty').value || 0);
+  state.m2_lon[u] = qty;
+  persist();
+  alert('Đã lưu tổng số đầu lợn!');
+}
+
+// MỤC 3
+function saveMuc3() {
+  let toU = currentUserData.unit;
+  let fromU = document.getElementById('m3_fromUnit').value;
+  let type = document.getElementById('m3_rauType').value.trim();
+  let qty = Number(document.getElementById('m3_qty').value || 0);
+  let price = Number(document.getElementById('m3_price').value || 0);
+  let date = document.getElementById('m3_date').value;
+  let person = document.getElementById('m3_person').value.trim();
+
+  if(toU == fromU) { alert('Đơn vị xuất rau không thể là đơn vị của bạn!'); return; }
+  if(!type || qty <= 0) { alert('Nhập đầy đủ tên loại rau và số lượng'); return; }
+
+  state.m3.push({
+    id: 'NR-' + String(state.seq++).padStart(3, '0'),
+    toUnit: toU, fromUnit: fromU, rauType: type, qty: qty, price: price, date: date, person: person, status: 'Chờ duyệt'
+  });
+  persist();
+  alert('Đã gửi đề nghị nhập rau tới Admin Lữ đoàn xét duyệt!');
+}
+
+// MỤC 4
+function saveMuc4() {
+  let u = currentUserData.unit;
+  let type = document.getElementById('m4_rauType').value.trim();
+  let qty = Number(document.getElementById('m4_qty').value || 0);
+  let price = Number(document.getElementById('m4_price').value || 0);
+  let date = document.getElementById('m4_date').value;
+  let person = document.getElementById('m4_person').value.trim();
+  let reason = document.getElementById('m4_reason').value.trim();
+
+  if(!type || qty <= 0) { alert('Nhập tên loại rau và số lượng cần mua ngoài!'); return; }
+
+  state.m4.push({
+    id: 'MN-' + String(state.seq++).padStart(3, '0'),
+    unit: u, rauType: type, qty: qty, price: price, date: date, person: person, reason: reason, status: 'Chờ duyệt'
+  });
+  persist();
+  alert('Đã gửi đề nghị mua ngoài tới Admin Lữ đoàn xét duyệt!');
+}
+
+// MỤC 5
+function saveMuc5Pig() {
+  let u = currentUserData.unit;
+  let type = document.getElementById('m5_pigType').value.trim();
+  let qty = Number(document.getElementById('m5_qty').value || 0);
+  let range = document.getElementById('m5_weightRange').value.trim();
+  let keeper = document.getElementById('m5_keeper').value.trim();
+
+  if(!type) { alert('Nhập loại lợn!'); return; }
+  state.m5_pigs.push({ id: Date.now(), unit: u, type: type, qty: qty, weightRange: range, keeper: keeper });
+  persist();
+}
+function deleteMuc5Pig(id) {
+  let p = state.m5_pigs.find(x => x.id === id);
+  if(currentUserData.role === 'unit' && p.unit != currentUserData.unit) {
+    alert('Bạn không thể xóa đàn lợn của đơn vị khác!');
+    return;
+  }
+  state.m5_pigs = state.m5_pigs.filter(x => x.id !== id);
+  persist();
+}
+function saveMuc5Sell() {
+  let u = currentUserData.unit;
+  let qty = Number(document.getElementById('m5_sell_qty').value || 0);
+  let weight = document.getElementById('m5_sell_weight').value.trim();
+  let reason = document.getElementById('m5_sell_reason').value.trim();
+  let person = document.getElementById('m5_sell_person').value.trim();
+
+  if(qty <= 0) { alert('Nhập số lượng đề nghị bán'); return; }
+  state.m5_sells.push({
+    id: 'BN-' + String(state.seq++).padStart(3, '0'),
+    unit: u, qty: qty, weight: weight, reason: reason, person: person, status: 'Chờ cấp trên duyệt'
+  });
+  persist();
+  alert('Đã gửi đề nghị bán lợn lên Admin!');
+}
+function saveMuc5Catch() {
+  if(currentUserData.role !== 'admin') { 
+    alert('Chỉ Admin mới có quyền ban hành Lệnh bắt lợn!'); 
+    return; 
+  }
+  let u = document.getElementById('m5_catch_unit').value;
+  let qty = Number(document.getElementById('m5_catch_qty').value || 0);
+  let purpose = document.getElementById('m5_catch_purpose').value.trim();
+  let date = document.getElementById('m5_catch_date').value;
+  let boss = document.getElementById('m5_catch_boss').value.trim();
+
+  if(qty <= 0) { alert('Nhập số lượng bắt lợn'); return; }
+  state.m5_catches.push({
+    id: 'BL-' + String(state.seq++).padStart(3, '0'),
+    unit: u, qty: qty, purpose: purpose, date: date, boss: boss, status: 'Lệnh từ Cấp trên (Chờ thực hiện)'
+  });
+  persist();
+  alert('Đã ban hành lệnh bắt lợn tới đơn vị!');
+}
+
+function approveItem(type, id, isApprove) {
+  if(currentUserData.role !== 'admin') {
+    alert('Chỉ Admin mới có quyền xét duyệt!');
+    return;
+  }
+  let item;
+  if(type === 'm3') item = state.m3.find(x => x.id === id);
+  if(type === 'm4') item = state.m4.find(x => x.id === id);
+  if(type === 'm5_sell') item = state.m5_sells.find(x => x.id === id);
+
+  if(!item) return;
+  item.status = isApprove ? 'Đã duyệt' : 'Từ chối';
+  persist();
+}
+
+function finishCatch(id) {
+  let item = state.m5_catches.find(x => x.id === id);
+  if(!item) return;
+  if(currentUserData.role === 'unit' && item.unit != currentUserData.unit) {
+    alert('Chỉ đơn vị nhận lệnh mới được báo hoàn thành!');
+    return;
+  }
+  item.status = 'Đã hoàn thành';
+  persist();
+}
+
+function renderAll() {
+  if(!document.getElementById('app') || document.getElementById('app').style.display === 'none') return;
+  const isAdmin = currentUserData.role === 'admin';
+  const myUnit = currentUserData.unit;
+
+  document.getElementById('m1_table').innerHTML = [1,2,3].map(u => {
+    let d = state.m1[u] || {};
+    return `<tr><td><b>${names[u]}</b></td><td>${d.assistant||'—'}</td><td>${d.phoneAssistant||'—'}</td><td>${d.chef||'—'}</td><td>${d.phoneChef||'—'}</td></tr>`;
+  }).join('');
+
+  document.getElementById('m2_rau_table').innerHTML = state.m2_rau.length ? state.m2_rau.map(x => `
+    <tr>
+      <td>${names[x.unit]}</td><td><b>${x.name}</b></td><td>${x.qty} kg</td><td>${x.note||'—'}</td>
+      <td>${(isAdmin || x.unit == myUnit) ? `<button class="btn red" onclick="deleteMuc2Rau(${x.id})">Xóa</button>` : '—'}</td>
+    </tr>
+  `).join('') : '<tr><td colspan="5">Chưa có số liệu rau.</td></tr>';
+
+  document.getElementById('m2_summary_table').innerHTML = [1,2,3].map(u => {
+    let totalRau = state.m2_rau.filter(r => Number(r.unit) === u).reduce((sum, item) => sum + Number(item.qty), 0);
+    let totalLon = state.m2_lon[u] || 0;
+    return `<tr><td><b>${names[u]}</b></td><td><b>${totalRau} kg</b></td><td><b>${totalLon} con</b></td></tr>`;
+  }).join('');
+
+  document.getElementById('m3_table').innerHTML = state.m3.length ? state.m3.map(x => `
+    <tr>
+      <td>${x.id}</td><td>${x.date||'—'}</td><td><b>${names[x.toUnit]}</b></td><td>${names[x.fromUnit]}</td>
+      <td>${x.rauType}</td><td>${x.qty} kg</td><td>${x.price.toLocaleString()} đ</td><td><b>${(x.qty * x.price).toLocaleString()} đ</b></td>
+      <td>${x.person||'—'}</td><td><span class="badge ${x.status==='Đã duyệt'?'ok':x.status==='Từ chối'?'danger':'warn'}">${x.status}</span></td>
+      <td>${x.status==='Chờ duyệt' && isAdmin ? `<button class="btn" onclick="approveItem('m3','${x.id}',true)">Duyệt</button> <button class="btn red" onclick="approveItem('m3','${x.id}',false)">Từ chối</button>` : '—'}</td>
+    </tr>
+  `).join('') : '<tr><td colspan="11">Chưa có đề nghị nhập rau.</td></tr>';
+
+  document.getElementById('m4_table').innerHTML = state.m4.length ? state.m4.map(x => `
+    <tr>
+      <td>${x.id}</td><td>${x.date||'—'}</td><td><b>${names[x.unit]}</b></td><td>${x.rauType}</td>
+      <td>${x.qty} kg</td><td>${x.price.toLocaleString()} đ</td><td><b>${(x.qty * x.price).toLocaleString()} đ</b></td>
+      <td>${x.person||'—'}</td><td>${x.reason||'—'}</td><td><span class="badge ${x.status==='Đã duyệt'?'ok':x.status==='Từ chối'?'danger':'warn'}">${x.status}</span></td>
+      <td>${x.status==='Chờ duyệt' && isAdmin ? `<button class="btn" onclick="approveItem('m4','${x.id}',true)">Duyệt</button> <button class="btn red" onclick="approveItem('m4','${x.id}',false)">Từ chối</button>` : '—'}</td>
+    </tr>
+  `).join('') : '<tr><td colspan="11">Chưa có đề nghị mua ngoài.</td></tr>';
+
+  document.getElementById('m5_pig_table').innerHTML = state.m5_pigs.length ? state.m5_pigs.map(x => `
+    <tr>
+      <td><b>${names[x.unit]}</b></td><td>${x.type}</td><td><b>${x.qty} con</b></td><td>${x.weightRange}</td><td>${x.keeper||'—'}</td>
+      <td>${(isAdmin || x.unit == myUnit) ? `<button class="btn red" onclick="deleteMuc5Pig(${x.id})">Xóa</button>` : '—'}</td>
+    </tr>
+  `).join('') : '<tr><td colspan="6">Chưa có dữ liệu đàn lợn.</td></tr>';
+
+  document.getElementById('m5_sell_table').innerHTML = state.m5_sells.length ? state.m5_sells.map(x => `
+    <tr>
+      <td>${x.id}</td><td><b>${names[x.unit]}</b></td><td><b>${x.qty} con</b></td><td>${x.weight}</td><td>${x.reason||'—'}</td><td>${x.person||'—'}</td>
+      <td><span class="badge ${x.status==='Đã duyệt'?'ok':x.status==='Từ chối'?'danger':'warn'}">${x.status}</span></td>
+      <td>${x.status==='Chờ cấp trên duyệt' && isAdmin ? `<button class="btn" onclick="approveItem('m5_sell','${x.id}',true)">Duyệt bán</button> <button class="btn red" onclick="approveItem('m5_sell','${x.id}',false)">Từ chối</button>` : '—'}</td>
+    </tr>
+  `).join('') : '<tr><td colspan="8">Chưa có đề nghị bán lợn.</td></tr>';
+
+  document.getElementById('m5_catch_table').innerHTML = state.m5_catches.length ? state.m5_catches.map(x => `
+    <tr>
+      <td>${x.id}</td><td>${x.date||'—'}</td><td><b>${names[x.unit]}</b></td><td><b>${x.qty} con</b></td><td>${x.purpose||'—'}</td><td>${x.boss||'—'}</td>
+      <td><span class="badge ${x.status==='Đã hoàn thành'?'ok':'warn'}">${x.status}</span></td>
+      <td>${x.status !== 'Đã hoàn thành' && (isAdmin || x.unit == myUnit) ? `<button class="btn" onclick="finishCatch('${x.id}')">Báo đã bắt xong</button>` : '—'}</td>
+    </tr>
+  `).join('') : '<tr><td colspan="8">Chưa có lệnh bắt lợn nào.</td></tr>';
+
+  renderMuc6();
+}
+
+function renderMuc6() {
+  let rauSelf = {1:0, 2:0, 3:0};
+  state.m2_rau.forEach(r => { rauSelf[r.unit] += Number(r.qty || 0); });
+
+  let lonSelf = {1: state.m2_lon[1]||0, 2: state.m2_lon[2]||0, 3: state.m2_lon[3]||0};
+
+  let rauImport = {1:0, 2:0, 3:0};
+  let rauExport = {1:0, 2:0, 3:0};
+  state.m3.filter(x => x.status === 'Đã duyệt').forEach(x => {
+    rauImport[x.toUnit] += Number(x.qty || 0);
+    rauExport[x.fromUnit] += Number(x.qty || 0);
+  });
+
+  let rauBuy = {1:0, 2:0, 3:0};
+  state.m4.filter(x => x.status === 'Đã duyệt').forEach(x => {
+    rauBuy[x.unit] += Number(x.qty || 0);
+  });
+
+  let maxRau = Math.max(...Object.values(rauSelf));
+  let maxLon = Math.max(...Object.values(lonSelf));
+
+  document.getElementById('m6_compare_table').innerHTML = [1,2,3].map(u => {
+    let isTopRau = rauSelf[u] > 0 && rauSelf[u] === maxRau;
+    let isTopLon = lonSelf[u] > 0 && lonSelf[u] === maxLon;
+    return `
+      <tr>
+        <td><b>${names[u]}</b></td>
+        <td><b>${rauSelf[u]} kg</b></td>
+        <td>${isTopRau ? '<span class="badge ok">🏆 Dẫn đầu sản lượng Rau</span>' : 'Đạt chỉ tiêu'}</td>
+        <td><b>${lonSelf[u]} con</b></td>
+        <td>${isTopLon ? '<span class="badge ok">🏆 Dẫn đầu đàn Lợn</span>' : 'Đạt chỉ tiêu'}</td>
+      </tr>
+    `;
+  }).join('');
+
+  document.getElementById('m6_rau_stat_table').innerHTML = [1,2,3].map(u => {
+    let totalAvailable = rauSelf[u] + rauImport[u] + rauBuy[u] - rauExport[u];
+    return `
+      <tr>
+        <td><b>${names[u]}</b></td>
+        <td>${rauSelf[u]} kg</td>
+        <td><span style="color:green">+${rauImport[u]} kg</span></td>
+        <td><span style="color:red">-${rauExport[u]} kg</span></td>
+        <td>+${rauBuy[u]} kg</td>
+        <td><b>${totalAvailable} kg</b></td>
+      </tr>
+    `;
+  }).join('');
+
+  let lonSell = {1:0, 2:0, 3:0};
+  state.m5_sells.filter(x => x.status === 'Đã duyệt').forEach(x => { lonSell[x.unit] += Number(x.qty || 0); });
+
+  let lonCatch = {1:0, 2:0, 3:0};
+  state.m5_catches.filter(x => x.status === 'Đã hoàn thành').forEach(x => { lonCatch[x.unit] += Number(x.qty || 0); });
+
+  document.getElementById('m6_lon_stat_table').innerHTML = [1,2,3].map(u => {
+    let totalOut = lonSell[u] + lonCatch[u];
+    return `
+      <tr>
+        <td><b>${names[u]}</b></td>
+        <td><b>${lonSelf[u]} con</b></td>
+        <td>${lonSell[u]} con</td>
+        <td>${lonCatch[u]} con</td>
+        <td><b>${totalOut} con</b></td>
+      </tr>
+    `;
+  }).join('');
+}
+
+// KHỦNG CÀI ĐẶT APP TỰ ĐỘNG (PWA INSTALL PROMPT)
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  document.getElementById('pwaInstallBanner').style.display = 'flex';
+});
+
+function installApp() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        document.getElementById('pwaInstallBanner').style.display = 'none';
+      }
+      deferredPrompt = null;
+    });
+  }
+}
+
+document.getElementById('m3_date').value = new Date().toISOString().slice(0,10);
+document.getElementById('m4_date').value = new Date().toISOString().slice(0,10);
+document.getElementById('m5_catch_date').value = new Date().toISOString().slice(0,10);
+</script>
+</body>
+</html>
